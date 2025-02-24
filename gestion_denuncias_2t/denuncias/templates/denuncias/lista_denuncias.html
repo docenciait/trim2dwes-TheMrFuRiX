@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Listado de Denuncias{% endblock %}
+
+{% block content %}
+<h2>Listado de Denuncias</h2>
+<p>Total denuncias: {{ denuncias|length }}</p>
+<ul>
+    {% for denuncia in denuncias %}
+        <li>
+            <strong>{{ denuncia.titulo }}</strong> 
+            <br> 
+            {{ denuncia.descripcion }} 
+            <br> 
+            {{ denuncia.categoria }} 
+            <br> 
+            {{ denuncia.estado }} 
+            <br> 
+            {{ denuncia.fecha_creacion }}
+            <br>
+            <a href="{% url 'editar_denuncia' denuncia.id %}">Editar</a>
+            <br>
+            <a href="{% url 'eliminar_denuncia' denuncia.id %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'crear_denuncia' %}" class="btn btn-primary mt-3">Crear Nueva Denuncia</a>
+{% endblock %}
